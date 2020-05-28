@@ -1,7 +1,7 @@
 
-import express from 'express'
-import mongoose from 'mongoose'
-import bodyParser from 'bodyParser'
+const express = require('express')
+const mongoose = require('mongoose')
+const bodyParser = require('body-parser')
 
 const app = express()
 
