@@ -3,8 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "proxy": "http://localhost:4000",
   "scripts": {
-    "server": "nodemon index.js"
+    "client": "npm run start --prefix client",
+    "server": "nodemon index.js",
+    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
+    "start": "node index.js"
+
   },
   "author": "",
   "license": "ISC",
