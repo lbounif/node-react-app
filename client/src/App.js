@@ -13,7 +13,6 @@ function App() {
 
   const getBooks = async () => {
     let res = await bookService.getAll()
-    console.log("In get books: ",res)
     setbooks(res)
   }
 
