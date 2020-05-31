@@ -5,6 +5,7 @@ module.exports = (app) => {
 
   app.get(`/api/book`, async (req, res) => {
     let books = await Book.find()
+    console.log("books are: ",books)
     return res.status(200).send(books)
   })
 

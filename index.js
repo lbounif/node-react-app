@@ -13,7 +13,7 @@ mongoose.connect(process.env.MONGODB_URI || `mongodb://localhost:27017/node-reac
 app.use(bodyParser.json())
 require('./routes/bookRoutes')(app)
 
-if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === 'bookion') {
     app.use(express.static('client/build'));
   
     const path = require('path');

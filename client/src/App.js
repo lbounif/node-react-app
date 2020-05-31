@@ -1,26 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react"
+
+import bookService from './services/BookService'
 
 function App() {
+  const [books, setbooks] = useState(null)
+
+  useEffect(() => {
+    if(!books) {
+      getBooks()
+    }
+  })
+
+  const getBooks = async () => {
+    let res = await bookService.getAll()
+    console.log("In get books: ",res)
+    setbooks(res)
+  }
+
+  const renderBook = book => (  
+      <li key={book._id} className="list__item book">
+        <h3 className="book__name">{book.author}</h3>
+        <h3 className="book__name">{book.title}</h3>
+        <p className="book__description">{book.description}</p>
+      </li>
+    )
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ul className="list">
+        {(books && books.length > 0) ? (
+          books.map(book => renderBook(book))
+        ) : ( <p>No Books found</p>
+        )}
+      </ul>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
